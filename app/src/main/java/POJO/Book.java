@@ -13,5 +13,7 @@ public class Book{
         this.bel_lat = bel_lat;
         this.eng = eng;
         this.book_flag = book_flag;
+
+        
     }
 }
