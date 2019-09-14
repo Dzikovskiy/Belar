@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimaryDarkForStatus">#212121</color>
+
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorLearn2">#4CAF50</color>
+    <color name="colorLearn">#44b56c</color>
+    <color name="colorTest">#0f9fff</color>
+    <color name="colorTest2">#64b5f6</color>
+    <color name="colorUpBar">#E0E0E0</color>
+    <color name="colorScore">#efe9f4</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorMatch">#ff6a4c</color>
+    <color name="colorMatch2">#ffd54f</color>
+    <color name="colorMatchDark">#585d7a</color>
+    <color name="colorLearnGradientStart">#44B56C</color>
+    <color name="colorLearnGradientCenter">#25DFC0</color>
+    <color name="colorLearnGradientEnd">#F6DF82</color>
+    <color name="colorMatchGradientStart">#5DA5BB</color>
+    <color name="colorMatchGradientCenter">#00BCD4</color>
+    <color name="colorMatchGradientEnd">#2B3966</color>
+    <color name="colorTestGradientStart">#74104E</color>
+    <color name="colorTestGradientCenter">#DD6E2A</color>
+    <color name="colorTestGradientEnd">#BE3E47</color>
+
+
+</resources>

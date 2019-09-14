@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentTest"
+    android:id="@+id/fragmentTest"
+    android:background="@drawable/gradient_test_animation"
+
+    >
+
+    <TextView
+        android:id="@+id/textViewCounter"
+        android:layout_width="150sp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="200sp"
+        android:layout_marginTop="20sp"
+        android:fontFamily="@font/urw"
+        android:gravity="right"
+        android:visibility="invisible"
+        android:text="0/0"
+        android:textSize="32sp" />
+
+    <TextView
+        android:id="@+id/textViewBel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="105sp"
+        android:layout_marginTop="185sp"
+        android:fontFamily="@font/urw"
+        android:text="Learn some words to start here"
+        android:textColor="@color/colorPrimaryDarkForStatus"
+        android:textSize="36sp" />
+
+    <TextView
+        android:textColor="@color/colorPrimaryDarkForStatus"
+        android:id="@+id/textViewBelLat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="105sp"
+        android:layout_marginTop="225sp"
+        android:fontFamily="@font/urw"
+        android:textSize="36sp" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="307sp"
+        android:layout_height="55sp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="391dp"
+        android:background="@drawable/button_custom"
+        android:fontFamily="@font/urw"
+        android:text="they"
+        android:textColor="@color/colorPrimaryDarkForStatus"
+        android:textSize="20sp"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="307sp"
+        android:layout_height="55sp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="461dp"
+        android:background="@drawable/button_custom"
+        android:fontFamily="@font/urw"
+        android:text="united"
+        android:textColor="@color/colorPrimaryDarkForStatus"
+        android:textSize="20sp"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="307sp"
+        android:layout_height="55sp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="531dp"
+        android:background="@drawable/button_custom"
+        android:fontFamily="@font/urw"
+        android:text="bellow"
+        android:textColor="@color/colorPrimaryDarkForStatus"
+        android:textSize="20sp"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="307sp"
+        android:layout_height="55sp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="601dp"
+        android:background="@drawable/button_custom"
+        android:fontFamily="@font/urw"
+        android:text="forest"
+        android:textColor="@color/colorPrimaryDarkForStatus"
+        android:textSize="20sp"
+        android:visibility="invisible" />
+
+
+
+
+
+</RelativeLayout>
