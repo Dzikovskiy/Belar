@@ -1,5 +1,6 @@
 package com.example.vitaliy.belor;
 
+import POJO.Book;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -18,14 +19,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import POJO.Book;
-
 // flag = 0 if unlearned, 1 if learned, 2 if processed of learn, 3 if tested
 
 public class FragmentLearn extends Fragment {
 
-    private DatabaseHelper mDBHelper;
-    private SQLiteDatabase mDb;
     ArrayList<Book> book_array = new ArrayList<>(5);
     TextView textViewBel;
     TextView textViewEng;
@@ -36,6 +33,8 @@ public class FragmentLearn extends Fragment {
     int counter = 0;
     int id;
     int button_prev;
+    private DatabaseHelper mDBHelper;
+    private SQLiteDatabase mDb;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

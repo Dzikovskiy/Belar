@@ -1,6 +1,7 @@
 package com.example.vitaliy.belor;
 
 
+import POJO.Book;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -18,13 +19,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-import POJO.Book;
-
 public class FragmentTest extends Fragment implements View.OnClickListener {
 
     Random rand = new Random();
-    private DatabaseHelper mDBHelper;
-    private SQLiteDatabase mDb;
     Cursor cursor;
     Cursor cursor_total;
     Cursor cursor_rand;
@@ -44,6 +41,8 @@ public class FragmentTest extends Fragment implements View.OnClickListener {
     Button Button_2;
     Button Button_3;
     Button Button_4;
+    private DatabaseHelper mDBHelper;
+    private SQLiteDatabase mDb;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -122,49 +121,49 @@ public class FragmentTest extends Fragment implements View.OnClickListener {
             switch (rand.nextInt(3)) {
                 case 0:
                     Button_1.setText(book_array.get(0).eng);
-                    button_ind_2 = Index_chaking.Index_chaking(i, book_array_rand, book_array);
+                    button_ind_2 = IndexChecker.indexChecking(i, book_array_rand, book_array);
                     Button_2.setText(book_array_rand.get(button_ind_2).eng);
-                    button_ind_3 = Index_chaking.Index_chaking(i, book_array_rand, book_array);
+                    button_ind_3 = IndexChecker.indexChecking(i, book_array_rand, book_array);
                     Button_3.setText(book_array_rand.get(button_ind_3).eng);
-                    button_ind_4 = Index_chaking.Index_chaking(i, book_array_rand, book_array);
+                    button_ind_4 = IndexChecker.indexChecking(i, book_array_rand, book_array);
                     Button_4.setText(book_array_rand.get(button_ind_4).eng);
                     break;
                 case 1:
-                    button_ind_1 = Index_chaking.Index_chaking(i, book_array_rand, book_array);
+                    button_ind_1 = IndexChecker.indexChecking(i, book_array_rand, book_array);
                     Button_1.setText(book_array_rand.get(button_ind_1).eng);
                     Button_2.setText(book_array.get(0).eng);
-                    button_ind_3 = Index_chaking.Index_chaking(i, book_array_rand, book_array);
+                    button_ind_3 = IndexChecker.indexChecking(i, book_array_rand, book_array);
                     Button_3.setText(book_array_rand.get(button_ind_3).eng);
-                    button_ind_4 = Index_chaking.Index_chaking(i, book_array_rand, book_array);
+                    button_ind_4 = IndexChecker.indexChecking(i, book_array_rand, book_array);
                     Button_4.setText(book_array_rand.get(button_ind_4).eng);
                     break;
 
                 case 2:
-                    button_ind_1 = Index_chaking.Index_chaking(i, book_array_rand, book_array);
+                    button_ind_1 = IndexChecker.indexChecking(i, book_array_rand, book_array);
                     Button_1.setText(book_array_rand.get(button_ind_1).eng);
-                    button_ind_2 = Index_chaking.Index_chaking(i, book_array_rand, book_array);
+                    button_ind_2 = IndexChecker.indexChecking(i, book_array_rand, book_array);
                     Button_2.setText(book_array_rand.get(button_ind_2).eng);
                     Button_3.setText(book_array.get(0).eng);
-                    button_ind_4 = Index_chaking.Index_chaking(i, book_array_rand, book_array);
+                    button_ind_4 = IndexChecker.indexChecking(i, book_array_rand, book_array);
                     Button_4.setText(book_array_rand.get(button_ind_4).eng);
                     break;
 
                 case 3:
-                    button_ind_1 = Index_chaking.Index_chaking(i, book_array_rand, book_array);
+                    button_ind_1 = IndexChecker.indexChecking(i, book_array_rand, book_array);
                     Button_1.setText(book_array_rand.get(button_ind_1).eng);
-                    button_ind_2 = Index_chaking.Index_chaking(i, book_array_rand, book_array);
+                    button_ind_2 = IndexChecker.indexChecking(i, book_array_rand, book_array);
                     Button_2.setText(book_array_rand.get(button_ind_2).eng);
-                    button_ind_3 = Index_chaking.Index_chaking(i, book_array_rand, book_array);
+                    button_ind_3 = IndexChecker.indexChecking(i, book_array_rand, book_array);
                     Button_3.setText(book_array_rand.get(button_ind_3).eng);
                     Button_4.setText(book_array.get(0).eng);
                     break;
 
                 default:
-                    button_ind_1 = Index_chaking.Index_chaking(i, book_array_rand, book_array);
+                    button_ind_1 = IndexChecker.indexChecking(i, book_array_rand, book_array);
                     Button_1.setText(book_array_rand.get(button_ind_1).eng);
-                    button_ind_2 = Index_chaking.Index_chaking(i, book_array_rand, book_array);
+                    button_ind_2 = IndexChecker.indexChecking(i, book_array_rand, book_array);
                     Button_2.setText(book_array_rand.get(button_ind_2).eng);
-                    button_ind_3 = Index_chaking.Index_chaking(i, book_array_rand, book_array);
+                    button_ind_3 = IndexChecker.indexChecking(i, book_array_rand, book_array);
                     Button_3.setText(book_array_rand.get(button_ind_3).eng);
                     Button_4.setText(book_array_rand.get(0).eng);
                     break;// выдаёт дубликаты
@@ -273,8 +272,8 @@ public class FragmentTest extends Fragment implements View.OnClickListener {
 
 }
 
-class Index_chaking {
-    public static int Index_chaking(int index, ArrayList<Book> book_rand, ArrayList<Book> book) {
+class IndexChecker {
+    public static int indexChecking(int index, ArrayList<Book> book_rand, ArrayList<Book> book) {
         Random rand = new Random();
         int rand_size = book_rand.size();
         int rand_index = rand.nextInt(rand_size);

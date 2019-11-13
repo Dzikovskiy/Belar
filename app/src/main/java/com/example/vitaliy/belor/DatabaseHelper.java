@@ -5,19 +5,14 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
+    private static final int DB_VERSION = 1;
     private static String DB_NAME = "dictionary.db";
     private static String DB_PATH = "";
-    private static final int DB_VERSION = 1;
-
-    private SQLiteDatabase mDataBase;
     private final Context mContext;
+    private SQLiteDatabase mDataBase;
     private boolean mNeedUpdate = false;
 
     public DatabaseHelper(Context context) {

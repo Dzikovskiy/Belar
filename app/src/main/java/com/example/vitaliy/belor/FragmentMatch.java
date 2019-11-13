@@ -1,5 +1,6 @@
 package com.example.vitaliy.belor;
 
+import POJO.Book;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,15 +18,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-import POJO.Book;
-
 public class FragmentMatch extends Fragment implements View.OnClickListener {
 
 
     buttonIndex buttonIndex = new buttonIndex(0, 0, 0, 0, 0, 0, 0, 0);
     Random rand = new Random();
-    private DatabaseHelper mDBHelper;
-    private SQLiteDatabase mDb;
     Cursor cursor;
     Button Button_1;
     Button Button_2;
@@ -40,8 +37,9 @@ public class FragmentMatch extends Fragment implements View.OnClickListener {
     int index_four;
     int i;
     int button_prev = 9;
-
     ArrayList<Book> book_array = new ArrayList<>(5);
+    private DatabaseHelper mDBHelper;
+    private SQLiteDatabase mDb;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,7 +72,6 @@ public class FragmentMatch extends Fragment implements View.OnClickListener {
         textView.setVisibility(View.VISIBLE);
 
         book_array.clear();
-        //  v.findViewById(R.id.button8).setVisibility(View.INVISIBLE);
 
         mDBHelper = new DatabaseHelper(getActivity());
         try {
@@ -118,7 +115,7 @@ public class FragmentMatch extends Fragment implements View.OnClickListener {
 
             s = book_array.size();
 
-            makeRandButtons.makeRand(Button_1, Button_2, Button_3, Button_4, Button_5,
+            ButtonsRandomizing.makeRand(Button_1, Button_2, Button_3, Button_4, Button_5,
                     Button_6, Button_7, Button_8, rand, book_array, buttonIndex, index_four);
 
             Button_1.setOnClickListener(this);
@@ -270,7 +267,7 @@ public class FragmentMatch extends Fragment implements View.OnClickListener {
                 button_prev = 9;
                 i = 4;
                 index_four = index_four + 4;
-                makeRandButtons.makeRand(Button_1, Button_2, Button_3, Button_4, Button_5,
+                ButtonsRandomizing.makeRand(Button_1, Button_2, Button_3, Button_4, Button_5,
                         Button_6, Button_7, Button_8, rand, book_array, buttonIndex, index_four);
             }
         } else {
@@ -282,7 +279,7 @@ public class FragmentMatch extends Fragment implements View.OnClickListener {
     }
 }
 
-class makeRandButtons {
+class ButtonsRandomizing {
 
     public static void makeRand(Button Button_1, Button Button_2, Button Button_3, Button Button_4,
                                 Button Button_5, Button Button_6, Button Button_7, Button Button_8,
