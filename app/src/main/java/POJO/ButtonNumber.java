@@ -1,7 +1,7 @@
 package POJO;
 
 public class ButtonNumber {
-    private String engText ;
+    private String engText;
     private String belText;
     private int engButtonNumber;
     private int belButtonNumber;
