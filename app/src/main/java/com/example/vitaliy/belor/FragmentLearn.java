@@ -1,6 +1,5 @@
 package com.example.vitaliy.belor;
 
-import POJO.Book;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -18,6 +17,8 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+
+import POJO.Book;
 
 // flag = 0 if unlearned, 1 if learned, 2 if processed of learn, 3 if tested
 

@@ -1,7 +1,6 @@
 package com.example.vitaliy.belor;
 
 
-import POJO.Book;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -18,6 +17,8 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+
+import POJO.Book;
 
 public class FragmentTest extends Fragment implements View.OnClickListener {
 
