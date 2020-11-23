@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "514514128769",
+    "firebase_url": "https://belar-c118a.firebaseio.com",
+    "project_id": "belar-c118a",
+    "storage_bucket": "belar-c118a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:514514128769:android:1b7fba35214f60c045a280",
+        "android_client_info": {
+          "package_name": "com.dzikovskiy.calculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "514514128769-93menifbgm1tek3cdmc2b6o3me1qpoks.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHpJDBELg4XrMWQlcfffnX0CpF9yAFCPo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "514514128769-93menifbgm1tek3cdmc2b6o3me1qpoks.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:514514128769:android:a0dbf378d7f630f545a280",
+        "android_client_info": {
+          "package_name": "com.example.vitaliy.belor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "514514128769-93menifbgm1tek3cdmc2b6o3me1qpoks.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHpJDBELg4XrMWQlcfffnX0CpF9yAFCPo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "514514128769-93menifbgm1tek3cdmc2b6o3me1qpoks.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

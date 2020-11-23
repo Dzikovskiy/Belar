@@ -6,13 +6,19 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,6 +29,8 @@ import POJO.Book;
 // flag = 0 if unlearned, 1 if learned, 2 if processed of learn, 3 if tested
 
 public class FragmentLearn extends Fragment {
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+
 
     ArrayList<Book> book_array = new ArrayList<>(5);
     TextView textViewBel;
@@ -36,12 +44,18 @@ public class FragmentLearn extends Fragment {
     int button_prev;
     private DatabaseHelper mDBHelper;
     private SQLiteDatabase mDb;
+    private AdView mAdView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
         View v = inflater.inflate(R.layout.fragment_fragment_learn, container, false);
+        mAdView = v.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
         final Button button_what = v.findViewById(R.id.buttonShow);
         final Button button_next = v.findViewById(R.id.buttonNext);
         final Button button_send = v.findViewById(R.id.buttonSend);
