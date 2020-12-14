@@ -73,7 +73,6 @@ public class Belor extends AppCompatActivity {
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();
 
-
     }
 
 }
