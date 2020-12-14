@@ -1,4 +1,4 @@
-package POJO;
+package entity;
 
 import android.view.View;
 

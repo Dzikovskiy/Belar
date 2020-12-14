@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +17,8 @@ import java.io.IOException;
 
 public class FragmentScore extends Fragment {
 
-    private DatabaseHelper mDBHelper;
-    private SQLiteDatabase mDb;
+    private DatabaseHelper databaseHelper;
+    private SQLiteDatabase sqLiteDatabase;
 
 
     @Override
@@ -30,28 +29,27 @@ public class FragmentScore extends Fragment {
         View v = inflater.inflate(R.layout.fragment_fragment_score, container, false);
 
         TextView textViewStat = v.findViewById(R.id.textView);
-        mDBHelper = new DatabaseHelper(getActivity());
+        databaseHelper = new DatabaseHelper(getActivity());
 
         try {
-            mDBHelper.updateDataBase();
+            databaseHelper.updateDataBase();
         } catch (IOException mIOException) {
             throw new Error("UnableToUpdateDatabase");
         }
 
         try {
-            mDb = mDBHelper.getWritableDatabase();
+            sqLiteDatabase = databaseHelper.getWritableDatabase();
         } catch (SQLException mSQLException) {
             throw mSQLException;
         }
 
-
-        Cursor cursor_progress = mDb.rawQuery("SELECT COUNT (*) FROM words WHERE flag =2 OR flag =3 ", null);
+        Cursor cursor_progress = sqLiteDatabase.rawQuery("SELECT COUNT (*) FROM words WHERE flag =2 OR flag =3 ", null);
         cursor_progress.moveToFirst();
-        Cursor cursor = mDb.rawQuery("SELECT COUNT(*) FROM words WHERE flag =1 ", null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT COUNT(*) FROM words WHERE flag =1 ", null);
         cursor.moveToFirst();
-        Cursor cursor_test = mDb.rawQuery("SELECT COUNT(*) FROM words WHERE flag =3", null);
+        Cursor cursor_test = sqLiteDatabase.rawQuery("SELECT COUNT(*) FROM words WHERE flag =3", null);
         cursor_test.moveToFirst();
-        Cursor cursor_learn = mDb.rawQuery("SELECT COUNT(*) FROM words WHERE flag =2", null);
+        Cursor cursor_learn = sqLiteDatabase.rawQuery("SELECT COUNT(*) FROM words WHERE flag =2", null);
         cursor_learn.moveToFirst();
 
         textViewStat.setText("You have learned " + cursor.getString(0) + " words\n" + "-------------" + "\nIn progress "

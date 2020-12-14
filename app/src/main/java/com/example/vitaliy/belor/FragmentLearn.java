@@ -6,7 +6,6 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,15 +23,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import POJO.Book;
+import entity.Book;
 
 // flag = 0 if unlearned, 1 if learned, 2 if processed of learn, 3 if tested
 
 public class FragmentLearn extends Fragment {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-
-    ArrayList<Book> book_array = new ArrayList<>(5);
+    ArrayList<Book> books = new ArrayList<>(5);
     TextView textViewBel;
     TextView textViewEng;
     TextView textViewLat;
@@ -41,9 +39,9 @@ public class FragmentLearn extends Fragment {
     int i = 0;
     int counter = 0;
     int id;
-    int button_prev;
-    private DatabaseHelper mDBHelper;
-    private SQLiteDatabase mDb;
+    int buttonPrev;
+    private DatabaseHelper databaseHelper;
+    private SQLiteDatabase sqLiteDatabase;
     private AdView mAdView;
 
     @Override
@@ -62,7 +60,7 @@ public class FragmentLearn extends Fragment {
         button_next.setVisibility(View.INVISIBLE);
         button_what.setVisibility(View.INVISIBLE);
         button_send.setVisibility(View.INVISIBLE);
-        button_prev = 0;// reset prev button index if nav bottom was changed
+        buttonPrev = 0;// reset prev button index if nav bottom was changed
 
         counter = 0;
         RelativeLayout relativeLayout = v.findViewById(R.id.fragmentLearn);
@@ -72,14 +70,14 @@ public class FragmentLearn extends Fragment {
         animationDrawable.setExitFadeDuration(5000);
         animationDrawable.start();
 
-        mDBHelper = new DatabaseHelper(getActivity());
+        databaseHelper = new DatabaseHelper(getActivity());
         try {
-            mDBHelper.updateDataBase();
+            databaseHelper.updateDataBase();
         } catch (IOException mIOException) {
             throw new Error("UnableToUpdateDatabase");
         }
         try {
-            mDb = mDBHelper.getWritableDatabase();
+            sqLiteDatabase = databaseHelper.getWritableDatabase();
         } catch (SQLException mSQLException) {
             throw mSQLException;
         }
@@ -92,12 +90,12 @@ public class FragmentLearn extends Fragment {
         textViewEng.setVisibility(View.INVISIBLE);
         textViewLat.setVisibility(View.INVISIBLE);
 
-        cursor = mDb.rawQuery("SELECT * FROM words WHERE flag =0 ", null);
+        cursor = sqLiteDatabase.rawQuery("SELECT * FROM words WHERE flag =0 ", null);
         cursor.moveToFirst();
         int total = cursor.getCount();
 
         i = 0;
-        book_array.clear();// clear from previus onCreate step
+        books.clear();// clear from previus onCreate step
         if (cursor != null && cursor.getCount() > 0) {
             button_next.setVisibility(View.VISIBLE);
             button_what.setVisibility(View.VISIBLE);
@@ -108,7 +106,7 @@ public class FragmentLearn extends Fragment {
                     Book book;
                     book = new Book(cursor.getString(0), cursor.getString(1), cursor.getString(2),
                             cursor.getString(3), cursor.getString(4));
-                    book_array.add(book);
+                    books.add(book);
                 } while (cursor.moveToNext());
             }
 
@@ -117,43 +115,43 @@ public class FragmentLearn extends Fragment {
             textViewLat.setVisibility(View.VISIBLE);
 
             textViewCounter.setText("" + i + "/" + total);
-            textViewBel.setText(book_array.get(i).bel);
-            textViewLat.setText("[" + book_array.get(i).bel_lat + "]");
+            textViewBel.setText(books.get(i).getBel());
+            textViewLat.setText("[" + books.get(i).getBel_lat() + "]");
             textViewEng.setText("");
-            id = Integer.parseInt(book_array.get(i)._id);
+            id = Integer.parseInt(books.get(i).get_id());
 
             button_next.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
 
 
-                    if (i < book_array.size() && i == (book_array.size() - 1)) {//cheking of the last element
-                        mDb.execSQL("UPDATE words SET flag = 2 WHERE bel ='" + textViewBel.getText().toString() + "'");
+                    if (i < books.size() && i == (books.size() - 1)) {//cheking of the last element
+                        sqLiteDatabase.execSQL("UPDATE words SET flag = 2 WHERE bel ='" + textViewBel.getText().toString() + "'");
                         textViewCounter.setText("" + i + "/" + cursor.getCount());
-                        textViewBel.setText(book_array.get(i).bel);
-                        textViewLat.setText("[" + book_array.get(i).bel_lat + "]");
+                        textViewBel.setText(books.get(i).getBel());
+                        textViewLat.setText("[" + books.get(i).getBel_lat() + "]");
                         textViewEng.setText("");
                         i++;
                         counter++;
                     }
-                    if (i < (book_array.size()) - 1) {//cheking if the begining and pre-ending element
+                    if (i < (books.size()) - 1) {//cheking if the begining and pre-ending element
 
-                        if (button_prev == 2) {
-                            Collections.swap(book_array, (book_array.size() - 1), i);
+                        if (buttonPrev == 2) {
+                            Collections.swap(books, (books.size() - 1), i);
 
-                            textViewBel.setText(book_array.get(i).bel);
-                            textViewLat.setText("[" + book_array.get(i).bel_lat + "]");
+                            textViewBel.setText(books.get(i).getBel());
+                            textViewLat.setText("[" + books.get(i).getBel_lat() + "]");
                             textViewEng.setText("");
                         } else {
-                            mDb.execSQL("UPDATE words SET flag = 2 WHERE bel ='" + textViewBel.getText().toString() + "'");
+                            sqLiteDatabase.execSQL("UPDATE words SET flag = 2 WHERE bel ='" + textViewBel.getText().toString() + "'");
                             i++;
                             counter++;
                             textViewCounter.setText("" + counter + "/" + cursor.getCount());
-                            textViewBel.setText(book_array.get(i).bel);
-                            textViewLat.setText("[" + book_array.get(i).bel_lat + "]");
+                            textViewBel.setText(books.get(i).getBel());
+                            textViewLat.setText("[" + books.get(i).getBel_lat() + "]");
                             textViewEng.setText("");
                         }
                     }
-                    if (book_array.size() < i || book_array.size() == i) {// cheking if more than array size and hide all
+                    if (books.size() < i || books.size() == i) {// cheking if more than array size and hide all
                         textViewBel.setText("Move to the next page");
                         textViewEng.setVisibility(View.INVISIBLE);
                         textViewLat.setVisibility(View.INVISIBLE);
@@ -167,7 +165,7 @@ public class FragmentLearn extends Fragment {
 
                     }
 
-                    button_prev = 1;
+                    buttonPrev = 1;
                 }
 
 
@@ -175,11 +173,11 @@ public class FragmentLearn extends Fragment {
 
             button_send.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    if (i < (book_array.size())) {
+                    if (i < (books.size())) {
                         Intent intent = new Intent(Intent.ACTION_SEND);
                         intent.setType("text/plain");
                         // String body = book_array.get(i).bel+" "+book_array.get(i).eng;
-                        String sub = book_array.get(i).bel + " " + book_array.get(i).eng;
+                        String sub = books.get(i).getBel() + " " + books.get(i).getEng();
                         //intent.putExtra(Intent.EXTRA_SUBJECT,body);
                         intent.putExtra(Intent.EXTRA_TEXT, sub);
                         startActivity(Intent.createChooser(intent, "share"));
@@ -189,11 +187,11 @@ public class FragmentLearn extends Fragment {
 
             button_what.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    if (i < (book_array.size())) {
-                        textViewEng.setText(book_array.get(i).eng);
+                    if (i < (books.size())) {
+                        textViewEng.setText(books.get(i).getEng());
                     }
 
-                    button_prev = 2;
+                    buttonPrev = 2;
 
                 }
             });

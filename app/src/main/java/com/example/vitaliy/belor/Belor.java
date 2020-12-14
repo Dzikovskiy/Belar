@@ -2,7 +2,6 @@ package com.example.vitaliy.belor;
 
 
 import android.os.Bundle;
-
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
@@ -11,8 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Belor extends AppCompatActivity {
@@ -31,7 +28,6 @@ public class Belor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_belor);
-
 
 
         fl = new FragmentLearn();

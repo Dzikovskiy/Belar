@@ -13,7 +13,7 @@ import java.io.OutputStream;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DB_VERSION = 1;
-    private static String DB_NAME = "dictionary.db";
+    private static final String DB_NAME = "dictionary.db";
     private static String DB_PATH = "";
     private final Context mContext;
     private SQLiteDatabase mDataBase;
@@ -21,10 +21,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
-        if (android.os.Build.VERSION.SDK_INT >= 17)
+        if (android.os.Build.VERSION.SDK_INT >= 17) {
             DB_PATH = context.getApplicationInfo().dataDir + "/databases/";
-        else
+        } else {
             DB_PATH = "/data/data/" + context.getPackageName() + "/databases/";
+        }
         this.mContext = context;
 
         copyDataBase();
@@ -35,8 +36,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void updateDataBase() throws IOException {
         if (mNeedUpdate) {
             File dbFile = new File(DB_PATH + DB_NAME);
-            if (dbFile.exists())
+            if (dbFile.exists()) {
                 dbFile.delete();
+            }
 
             copyDataBase();
 
@@ -81,8 +83,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public synchronized void close() {
-        if (mDataBase != null)
+        if (mDataBase != null) {
             mDataBase.close();
+        }
         super.close();
     }
 
@@ -93,7 +96,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (newVersion > oldVersion)
+        if (newVersion > oldVersion) {
             mNeedUpdate = true;
+        }
     }
 }

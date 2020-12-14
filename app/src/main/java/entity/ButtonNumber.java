@@ -1,4 +1,4 @@
-package POJO;
+package entity;
 
 public class ButtonNumber {
     private String engText;

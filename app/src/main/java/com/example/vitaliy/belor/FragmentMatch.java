@@ -5,7 +5,6 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +18,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-import POJO.Book;
+import entity.Book;
 
 public class FragmentMatch extends Fragment implements View.OnClickListener {
-
 
     buttonIndex buttonIndex = new buttonIndex(0, 0, 0, 0, 0, 0, 0, 0);
     Random rand = new Random();
@@ -40,9 +38,9 @@ public class FragmentMatch extends Fragment implements View.OnClickListener {
     int index_four;
     int i;
     int button_prev = 9;
-    ArrayList<Book> book_array = new ArrayList<>(5);
-    private DatabaseHelper mDBHelper;
-    private SQLiteDatabase mDb;
+    ArrayList<Book> books = new ArrayList<>(5);
+    private DatabaseHelper databaseHelper;
+    private SQLiteDatabase sqLiteDatabase;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,21 +72,21 @@ public class FragmentMatch extends Fragment implements View.OnClickListener {
         Button_8.setVisibility(View.INVISIBLE);
         textView.setVisibility(View.VISIBLE);
 
-        book_array.clear();
+        books.clear();
 
-        mDBHelper = new DatabaseHelper(getActivity());
+        databaseHelper = new DatabaseHelper(getActivity());
         try {
-            mDBHelper.updateDataBase();
+            databaseHelper.updateDataBase();
         } catch (IOException mIOException) {
             throw new Error("UnableToUpdateDatabase");
         }
         try {
-            mDb = mDBHelper.getWritableDatabase();
+            sqLiteDatabase = databaseHelper.getWritableDatabase();
         } catch (SQLException mSQLException) {
             throw mSQLException;
         }
 
-        cursor = mDb.rawQuery("SELECT * FROM words WHERE flag =3 ", null);
+        cursor = sqLiteDatabase.rawQuery("SELECT * FROM words WHERE flag =3 ", null);
         cursor.moveToFirst();
 
         if (cursor != null && cursor.getCount() >= 4) {
@@ -102,7 +100,7 @@ public class FragmentMatch extends Fragment implements View.OnClickListener {
 
                     Book book;
                     book = new Book(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
-                    book_array.add(book);
+                    books.add(book);
                 } while (cursor.moveToNext());
             }
 
@@ -116,10 +114,10 @@ public class FragmentMatch extends Fragment implements View.OnClickListener {
             Button_8.setVisibility(View.VISIBLE);
             textView.setVisibility(View.INVISIBLE);
 
-            s = book_array.size();
+            s = books.size();
 
             ButtonsRandomizing.makeRand(Button_1, Button_2, Button_3, Button_4, Button_5,
-                    Button_6, Button_7, Button_8, rand, book_array, buttonIndex, index_four);
+                    Button_6, Button_7, Button_8, rand, books, buttonIndex, index_four);
 
             Button_1.setOnClickListener(this);
             Button_2.setOnClickListener(this);
@@ -175,8 +173,8 @@ public class FragmentMatch extends Fragment implements View.OnClickListener {
         int prevButtonArrayIndex = 999;
         int currentButtonArrayIndex = 999;
 
-        for (int i = 0; i < book_array.size(); i++) {
-            if ((text.compareTo(book_array.get(i).eng) == 0) || (text.compareTo(book_array.get(i).bel) == 0)) {
+        for (int i = 0; i < books.size(); i++) {
+            if ((text.compareTo(books.get(i).getEng()) == 0) || (text.compareTo(books.get(i).getBel()) == 0)) {
 
                 prevButtonArrayIndex = i;
             }
@@ -185,8 +183,8 @@ public class FragmentMatch extends Fragment implements View.OnClickListener {
         String currentButtonText;
         currentButtonText = (String) ((Button) v).getText();
 
-        for (int i = 0; i < book_array.size(); i++) {
-            if ((currentButtonText.compareTo(book_array.get(i).eng) == 0) || (currentButtonText.compareTo(book_array.get(i).bel) == 0)) {
+        for (int i = 0; i < books.size(); i++) {
+            if ((currentButtonText.compareTo(books.get(i).getEng()) == 0) || (currentButtonText.compareTo(books.get(i).getBel()) == 0)) {
 
                 currentButtonArrayIndex = i;
             }
@@ -228,7 +226,7 @@ public class FragmentMatch extends Fragment implements View.OnClickListener {
                         break;
                 }
 
-                mDb.execSQL("UPDATE words SET flag = 1 WHERE _id =" + book_array.get(currentButtonArrayIndex)._id);
+                sqLiteDatabase.execSQL("UPDATE words SET flag = 1 WHERE _id =" + books.get(currentButtonArrayIndex).get_id());
 
             }
         }
@@ -265,13 +263,13 @@ public class FragmentMatch extends Fragment implements View.OnClickListener {
         }
 
 
-        if ((book_array.size() - (index_four + 4)) >= 4) {
+        if ((books.size() - (index_four + 4)) >= 4) {
             if (i == 0) {
                 button_prev = 9;
                 i = 4;
                 index_four = index_four + 4;
                 ButtonsRandomizing.makeRand(Button_1, Button_2, Button_3, Button_4, Button_5,
-                        Button_6, Button_7, Button_8, rand, book_array, buttonIndex, index_four);
+                        Button_6, Button_7, Button_8, rand, books, buttonIndex, index_four);
             }
         } else {
             if (i == 0) {
@@ -289,80 +287,80 @@ class ButtonsRandomizing {
                                 Random rand, ArrayList<Book> book_array, buttonIndex buttonIndex, int four_index) {
         switch (rand.nextInt(4)) {
             case 0:
-                Button_1.setText(book_array.get(four_index + 0).eng);
+                Button_1.setText(book_array.get(four_index + 0).getEng());
                 buttonIndex.button_ind_1 = 0;
-                Button_2.setText(book_array.get(four_index + 0).bel);
+                Button_2.setText(book_array.get(four_index + 0).getBel());
                 buttonIndex.button_ind_2 = 0;
-                Button_3.setText(book_array.get(four_index + 3).eng);
+                Button_3.setText(book_array.get(four_index + 3).getEng());
                 buttonIndex.button_ind_3 = 3;
-                Button_4.setText(book_array.get(four_index + 1).bel);
+                Button_4.setText(book_array.get(four_index + 1).getBel());
                 buttonIndex.button_ind_4 = 1;
-                Button_5.setText(book_array.get(four_index + 2).eng);
+                Button_5.setText(book_array.get(four_index + 2).getEng());
                 buttonIndex.button_ind_5 = 2;
-                Button_6.setText(book_array.get(four_index + 2).bel);
+                Button_6.setText(book_array.get(four_index + 2).getBel());
                 buttonIndex.button_ind_6 = 2;
-                Button_7.setText(book_array.get(four_index + 1).eng);
+                Button_7.setText(book_array.get(four_index + 1).getEng());
                 buttonIndex.button_ind_7 = 1;
-                Button_8.setText(book_array.get(four_index + 3).bel);
+                Button_8.setText(book_array.get(four_index + 3).getBel());
                 buttonIndex.button_ind_8 = 3;
 
                 break;
 
             case 1:
-                Button_1.setText(book_array.get(four_index + 3).eng);
+                Button_1.setText(book_array.get(four_index + 3).getEng());
                 buttonIndex.button_ind_1 = 3;
-                Button_2.setText(book_array.get(four_index + 2).bel);
+                Button_2.setText(book_array.get(four_index + 2).getBel());
                 buttonIndex.button_ind_2 = 2;
-                Button_3.setText(book_array.get(four_index + 0).eng);
+                Button_3.setText(book_array.get(four_index + 0).getEng());
                 buttonIndex.button_ind_3 = 0;
-                Button_4.setText(book_array.get(four_index + 0).bel);
+                Button_4.setText(book_array.get(four_index + 0).getBel());
                 buttonIndex.button_ind_4 = 0;
-                Button_5.setText(book_array.get(four_index + 1).eng);
+                Button_5.setText(book_array.get(four_index + 1).getEng());
                 buttonIndex.button_ind_5 = 1;
-                Button_6.setText(book_array.get(four_index + 1).bel);
+                Button_6.setText(book_array.get(four_index + 1).getBel());
                 buttonIndex.button_ind_6 = 1;
-                Button_7.setText(book_array.get(four_index + 2).eng);
+                Button_7.setText(book_array.get(four_index + 2).getEng());
                 buttonIndex.button_ind_7 = 2;
-                Button_8.setText(book_array.get(four_index + 3).bel);
+                Button_8.setText(book_array.get(four_index + 3).getBel());
                 buttonIndex.button_ind_8 = 3;
                 break;
 
             case 3:
-                Button_1.setText(book_array.get(four_index + 1).eng);
+                Button_1.setText(book_array.get(four_index + 1).getEng());
                 buttonIndex.button_ind_1 = 1;
-                Button_2.setText(book_array.get(four_index + 1).bel);
+                Button_2.setText(book_array.get(four_index + 1).getBel());
                 buttonIndex.button_ind_2 = 1;
-                Button_3.setText(book_array.get(four_index + 2).eng);
+                Button_3.setText(book_array.get(four_index + 2).getEng());
                 buttonIndex.button_ind_3 = 2;
-                Button_4.setText(book_array.get(four_index + 0).bel);
+                Button_4.setText(book_array.get(four_index + 0).getBel());
                 buttonIndex.button_ind_4 = 0;
-                Button_5.setText(book_array.get(four_index + 3).eng);
+                Button_5.setText(book_array.get(four_index + 3).getEng());
                 buttonIndex.button_ind_5 = 3;
-                Button_6.setText(book_array.get(four_index + 3).bel);
+                Button_6.setText(book_array.get(four_index + 3).getBel());
                 buttonIndex.button_ind_6 = 3;
-                Button_7.setText(book_array.get(four_index + 0).eng);
+                Button_7.setText(book_array.get(four_index + 0).getEng());
                 buttonIndex.button_ind_7 = 0;
-                Button_8.setText(book_array.get(four_index + 2).bel);
+                Button_8.setText(book_array.get(four_index + 2).getBel());
                 buttonIndex.button_ind_8 = 2;
                 break;
 
             default:
 
-                Button_1.setText(book_array.get(four_index + 0).eng);
+                Button_1.setText(book_array.get(four_index + 0).getEng());
                 buttonIndex.button_ind_1 = 0;
-                Button_2.setText(book_array.get(four_index + 3).bel);
+                Button_2.setText(book_array.get(four_index + 3).getBel());
                 buttonIndex.button_ind_2 = 3;
-                Button_3.setText(book_array.get(four_index + 1).eng);
+                Button_3.setText(book_array.get(four_index + 1).getEng());
                 buttonIndex.button_ind_3 = 1;
-                Button_4.setText(book_array.get(four_index + 1).bel);
+                Button_4.setText(book_array.get(four_index + 1).getBel());
                 buttonIndex.button_ind_4 = 1;
-                Button_5.setText(book_array.get(four_index + 2).eng);
+                Button_5.setText(book_array.get(four_index + 2).getEng());
                 buttonIndex.button_ind_5 = 2;
-                Button_6.setText(book_array.get(four_index + 2).bel);
+                Button_6.setText(book_array.get(four_index + 2).getBel());
                 buttonIndex.button_ind_6 = 2;
-                Button_7.setText(book_array.get(four_index + 3).eng);
+                Button_7.setText(book_array.get(four_index + 3).getEng());
                 buttonIndex.button_ind_7 = 3;
-                Button_8.setText(book_array.get(four_index + 0).bel);
+                Button_8.setText(book_array.get(four_index + 0).getBel());
                 buttonIndex.button_ind_8 = 0;
                 break;
 
