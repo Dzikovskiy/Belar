@@ -1,4 +1,4 @@
-package com.example.vitaliy.belor;
+package com.example.vitaliy.belor.fragment;
 
 import android.database.Cursor;
 import android.database.SQLException;
@@ -13,6 +13,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+
+import com.example.vitaliy.belor.service.DatabaseHelper;
+import com.example.vitaliy.belor.R;
 
 import java.io.IOException;
 import java.util.ArrayList;

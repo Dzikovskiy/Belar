@@ -1,4 +1,4 @@
-package com.example.vitaliy.belor;
+package com.example.vitaliy.belor.service;
 
 import android.content.Context;
 import android.database.SQLException;

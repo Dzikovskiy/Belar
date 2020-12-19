@@ -1,4 +1,4 @@
-package com.example.vitaliy.belor;
+package com.example.vitaliy.belor.activity;
 
 
 import android.os.Bundle;
@@ -10,6 +10,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.vitaliy.belor.R;
+import com.example.vitaliy.belor.fragment.FragmentLearn;
+import com.example.vitaliy.belor.fragment.FragmentMatch;
+import com.example.vitaliy.belor.fragment.FragmentScore;
+import com.example.vitaliy.belor.fragment.FragmentTest;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Belor extends AppCompatActivity {

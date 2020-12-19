@@ -1,4 +1,4 @@
-package com.example.vitaliy.belor;
+package com.example.vitaliy.belor.fragment;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.vitaliy.belor.service.DatabaseHelper;
+import com.example.vitaliy.belor.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.database.FirebaseDatabase;
