@@ -46,6 +46,13 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         mAuth= FirebaseAuth.getInstance();
+
+        if (mAuth.getCurrentUser() != null) {
+            // User is already signed in
+            Intent intent = new Intent(this, Belor.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     private void userLogin(final View view) {
@@ -74,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Intent intent = new Intent(view.getContext(), Belor.class);
                     startActivity(intent);
-                    // finish();
+                     finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Error", Toast.LENGTH_LONG).show();
                 }

@@ -86,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
                                         Toast.makeText(RegisterActivity.this, "User registered", Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(view.getContext(), LoginActivity.class);
                                         startActivity(intent);
-                                        // finish();
+                                         finish();
                                     } else {
                                         Toast.makeText(RegisterActivity.this, "User not registered", Toast.LENGTH_LONG).show();
                                     }
