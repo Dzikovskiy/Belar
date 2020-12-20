@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-import entity.Book;
+import entity.Word;
 
 public class FragmentMatch extends Fragment implements View.OnClickListener {
 
@@ -41,7 +41,7 @@ public class FragmentMatch extends Fragment implements View.OnClickListener {
     int index_four;
     int i;
     int button_prev = 9;
-    ArrayList<Book> books = new ArrayList<>(5);
+    ArrayList<Word> words = new ArrayList<>(5);
     private DatabaseHelper databaseHelper;
     private SQLiteDatabase sqLiteDatabase;
 
@@ -75,308 +75,308 @@ public class FragmentMatch extends Fragment implements View.OnClickListener {
         Button_8.setVisibility(View.INVISIBLE);
         textView.setVisibility(View.VISIBLE);
 
-        books.clear();
-
-        databaseHelper = new DatabaseHelper(getActivity());
-        try {
-            databaseHelper.updateDataBase();
-        } catch (IOException mIOException) {
-            throw new Error("UnableToUpdateDatabase");
-        }
-        try {
-            sqLiteDatabase = databaseHelper.getWritableDatabase();
-        } catch (SQLException mSQLException) {
-            throw mSQLException;
-        }
-
-        cursor = sqLiteDatabase.rawQuery("SELECT * FROM words WHERE flag =3 ", null);
-        cursor.moveToFirst();
-
-        if (cursor != null && cursor.getCount() >= 4) {
-
-            i = 4;
-
-            index_four = 0;
-
-            if (cursor.moveToFirst()) {
-                do {// adding to array only processed of learn
-
-                    Book book;
-                    book = new Book(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
-                    books.add(book);
-                } while (cursor.moveToNext());
-            }
-
-            Button_1.setVisibility(View.VISIBLE);
-            Button_2.setVisibility(View.VISIBLE);
-            Button_3.setVisibility(View.VISIBLE);
-            Button_4.setVisibility(View.VISIBLE);
-            Button_5.setVisibility(View.VISIBLE);
-            Button_6.setVisibility(View.VISIBLE);
-            Button_7.setVisibility(View.VISIBLE);
-            Button_8.setVisibility(View.VISIBLE);
-            textView.setVisibility(View.INVISIBLE);
-
-            s = books.size();
-
-            ButtonsRandomizing.makeRand(Button_1, Button_2, Button_3, Button_4, Button_5,
-                    Button_6, Button_7, Button_8, rand, books, buttonIndex, index_four);
-
-            Button_1.setOnClickListener(this);
-            Button_2.setOnClickListener(this);
-            Button_3.setOnClickListener(this);
-            Button_4.setOnClickListener(this);
-            Button_5.setOnClickListener(this);
-            Button_6.setOnClickListener(this);
-            Button_7.setOnClickListener(this);
-            Button_8.setOnClickListener(this);
-
-
-        } else {
-            textView.setVisibility(View.VISIBLE);
-        }
+//        words.clear();
+//
+//        databaseHelper = new DatabaseHelper(getActivity());
+//        try {
+//            databaseHelper.updateDataBase();
+//        } catch (IOException mIOException) {
+//            throw new Error("UnableToUpdateDatabase");
+//        }
+//        try {
+//            sqLiteDatabase = databaseHelper.getWritableDatabase();
+//        } catch (SQLException mSQLException) {
+//            throw mSQLException;
+//        }
+//
+//        cursor = sqLiteDatabase.rawQuery("SELECT * FROM words WHERE flag =3 ", null);
+//        cursor.moveToFirst();
+//
+//        if (cursor != null && cursor.getCount() >= 4) {
+//
+//            i = 4;
+//
+//            index_four = 0;
+//
+//            if (cursor.moveToFirst()) {
+//                do {// adding to array only processed of learn
+//
+//                    Word word;
+//                    word = new Word(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+//                    words.add(word);
+//                } while (cursor.moveToNext());
+//            }
+//
+//            Button_1.setVisibility(View.VISIBLE);
+//            Button_2.setVisibility(View.VISIBLE);
+//            Button_3.setVisibility(View.VISIBLE);
+//            Button_4.setVisibility(View.VISIBLE);
+//            Button_5.setVisibility(View.VISIBLE);
+//            Button_6.setVisibility(View.VISIBLE);
+//            Button_7.setVisibility(View.VISIBLE);
+//            Button_8.setVisibility(View.VISIBLE);
+//            textView.setVisibility(View.INVISIBLE);
+//
+//            s = words.size();
+//
+//            ButtonsRandomizing.makeRand(Button_1, Button_2, Button_3, Button_4, Button_5,
+//                    Button_6, Button_7, Button_8, rand, words, buttonIndex, index_four);
+//
+//            Button_1.setOnClickListener(this);
+//            Button_2.setOnClickListener(this);
+//            Button_3.setOnClickListener(this);
+//            Button_4.setOnClickListener(this);
+//            Button_5.setOnClickListener(this);
+//            Button_6.setOnClickListener(this);
+//            Button_7.setOnClickListener(this);
+//            Button_8.setOnClickListener(this);
+//
+//
+//        } else {
+//            textView.setVisibility(View.VISIBLE);
+//        }
         return v;
 
     }
 
     @Override
     public void onClick(View v) {
-
+//
         String text = "";
-        switch (button_prev) {
-            case 1:
-                text = Button_1.getText().toString();
-                break;
-            case 2:
-                text = Button_2.getText().toString();
-                break;
-            case 3:
-                text = Button_3.getText().toString();
-                break;
-            case 4:
-                text = Button_4.getText().toString();
-                break;
-            case 5:
-                text = Button_5.getText().toString();
-                break;
-            case 6:
-                text = Button_6.getText().toString();
-                break;
-            case 7:
-                text = Button_7.getText().toString();
-                break;
-            case 8:
-                text = Button_8.getText().toString();
-                break;
-            default:
-                text = "0";
-                break;
+//        switch (button_prev) {
+//            case 1:
+//                text = Button_1.getText().toString();
+//                break;
+//            case 2:
+//                text = Button_2.getText().toString();
+//                break;
+//            case 3:
+//                text = Button_3.getText().toString();
+//                break;
+//            case 4:
+//                text = Button_4.getText().toString();
+//                break;
+//            case 5:
+//                text = Button_5.getText().toString();
+//                break;
+//            case 6:
+//                text = Button_6.getText().toString();
+//                break;
+//            case 7:
+//                text = Button_7.getText().toString();
+//                break;
+//            case 8:
+//                text = Button_8.getText().toString();
+//                break;
+//            default:
+//                text = "0";
+//                break;
         }
-
-        int prevButtonArrayIndex = 999;
-        int currentButtonArrayIndex = 999;
-
-        for (int i = 0; i < books.size(); i++) {
-            if ((text.compareTo(books.get(i).getEng()) == 0) || (text.compareTo(books.get(i).getBel()) == 0)) {
-
-                prevButtonArrayIndex = i;
-            }
-        }
-
-        String currentButtonText;
-        currentButtonText = (String) ((Button) v).getText();
-
-        for (int i = 0; i < books.size(); i++) {
-            if ((currentButtonText.compareTo(books.get(i).getEng()) == 0) || (currentButtonText.compareTo(books.get(i).getBel()) == 0)) {
-
-                currentButtonArrayIndex = i;
-            }
-        }
-
-        if (text.compareTo((String) ((Button) v).getText()) != 0) {
-            // может проверять обьекты
-
-            if (currentButtonArrayIndex == prevButtonArrayIndex) { // book_array obj contains word and translating
-                i--;
-                v.findViewById(v.getId()).setVisibility(View.INVISIBLE);
-
-                switch (button_prev) {
-                    case 1:
-                        Button_1.setVisibility(View.INVISIBLE);
-                        break;
-                    case 2:
-                        Button_2.setVisibility(View.INVISIBLE);
-                        break;
-                    case 3:
-                        Button_3.setVisibility(View.INVISIBLE);
-                        break;
-                    case 4:
-                        Button_4.setVisibility(View.INVISIBLE);
-                        break;
-                    case 5:
-                        Button_5.setVisibility(View.INVISIBLE);
-                        break;
-                    case 6:
-                        Button_6.setVisibility(View.INVISIBLE);
-                        break;
-                    case 7:
-                        Button_7.setVisibility(View.INVISIBLE);
-                        break;
-                    case 8:
-                        Button_8.setVisibility(View.INVISIBLE);
-                        break;
-                    default:
-                        break;
-                }
-
-                sqLiteDatabase.execSQL("UPDATE words SET flag = 1 WHERE _id =" + books.get(currentButtonArrayIndex).get_id());
-
-            }
-        }
-
-
-        switch (v.getId()) {// Storage the previous clicked button in button_prev
-
-            case R.id.button1:
-                button_prev = 1;
-                break;
-            case R.id.button2:
-                button_prev = 2;
-                break;
-            case R.id.button3:
-                button_prev = 3;
-                break;
-            case R.id.button4:
-                button_prev = 4;
-                break;
-            case R.id.button5:
-                button_prev = 5;
-                break;
-            case R.id.button6:
-                button_prev = 6;
-                break;
-            case R.id.button7:
-                button_prev = 7;
-                break;
-            case R.id.button8:
-                button_prev = 8;
-                break;
-            default:
-                break;
-        }
-
-
-        if ((books.size() - (index_four + 4)) >= 4) {
-            if (i == 0) {
-                button_prev = 9;
-                i = 4;
-                index_four = index_four + 4;
-                ButtonsRandomizing.makeRand(Button_1, Button_2, Button_3, Button_4, Button_5,
-                        Button_6, Button_7, Button_8, rand, books, buttonIndex, index_four);
-            }
-        } else {
-            if (i == 0) {
-                textView.setVisibility(View.VISIBLE);
-            }
-        }
-
-    }
-}
-
+//
+//        int prevButtonArrayIndex = 999;
+//        int currentButtonArrayIndex = 999;
+//
+//        for (int i = 0; i < words.size(); i++) {
+//            if ((text.compareTo(words.get(i).getEng()) == 0) || (text.compareTo(words.get(i).getBel()) == 0)) {
+//
+//                prevButtonArrayIndex = i;
+//            }
+//        }
+//
+//        String currentButtonText;
+//        currentButtonText = (String) ((Button) v).getText();
+//
+//        for (int i = 0; i < words.size(); i++) {
+//            if ((currentButtonText.compareTo(words.get(i).getEng()) == 0) || (currentButtonText.compareTo(words.get(i).getBel()) == 0)) {
+//
+//                currentButtonArrayIndex = i;
+//            }
+//        }
+//
+//        if (text.compareTo((String) ((Button) v).getText()) != 0) {
+//            // может проверять обьекты
+//
+//            if (currentButtonArrayIndex == prevButtonArrayIndex) { // book_array obj contains word and translating
+//                i--;
+//                v.findViewById(v.getId()).setVisibility(View.INVISIBLE);
+//
+//                switch (button_prev) {
+//                    case 1:
+//                        Button_1.setVisibility(View.INVISIBLE);
+//                        break;
+//                    case 2:
+//                        Button_2.setVisibility(View.INVISIBLE);
+//                        break;
+//                    case 3:
+//                        Button_3.setVisibility(View.INVISIBLE);
+//                        break;
+//                    case 4:
+//                        Button_4.setVisibility(View.INVISIBLE);
+//                        break;
+//                    case 5:
+//                        Button_5.setVisibility(View.INVISIBLE);
+//                        break;
+//                    case 6:
+//                        Button_6.setVisibility(View.INVISIBLE);
+//                        break;
+//                    case 7:
+//                        Button_7.setVisibility(View.INVISIBLE);
+//                        break;
+//                    case 8:
+//                        Button_8.setVisibility(View.INVISIBLE);
+//                        break;
+//                    default:
+//                        break;
+//                }
+//
+//                sqLiteDatabase.execSQL("UPDATE words SET flag = 1 WHERE _id =" + words.get(currentButtonArrayIndex).get_id());
+//
+//            }
+//        }
+//
+//
+//        switch (v.getId()) {// Storage the previous clicked button in button_prev
+//
+//            case R.id.button1:
+//                button_prev = 1;
+//                break;
+//            case R.id.button2:
+//                button_prev = 2;
+//                break;
+//            case R.id.button3:
+//                button_prev = 3;
+//                break;
+//            case R.id.button4:
+//                button_prev = 4;
+//                break;
+//            case R.id.button5:
+//                button_prev = 5;
+//                break;
+//            case R.id.button6:
+//                button_prev = 6;
+//                break;
+//            case R.id.button7:
+//                button_prev = 7;
+//                break;
+//            case R.id.button8:
+//                button_prev = 8;
+//                break;
+//            default:
+//                break;
+//        }
+//
+//
+//        if ((words.size() - (index_four + 4)) >= 4) {
+//            if (i == 0) {
+//                button_prev = 9;
+//                i = 4;
+//                index_four = index_four + 4;
+//                ButtonsRandomizing.makeRand(Button_1, Button_2, Button_3, Button_4, Button_5,
+//                        Button_6, Button_7, Button_8, rand, words, buttonIndex, index_four);
+//            }
+//        } else {
+//            if (i == 0) {
+//                textView.setVisibility(View.VISIBLE);
+//            }
+//        }
+//
+//    }
+//}
+//
 class ButtonsRandomizing {
-
-    public static void makeRand(Button Button_1, Button Button_2, Button Button_3, Button Button_4,
-                                Button Button_5, Button Button_6, Button Button_7, Button Button_8,
-                                Random rand, ArrayList<Book> book_array, buttonIndex buttonIndex, int four_index) {
-        switch (rand.nextInt(4)) {
-            case 0:
-                Button_1.setText(book_array.get(four_index + 0).getEng());
-                buttonIndex.button_ind_1 = 0;
-                Button_2.setText(book_array.get(four_index + 0).getBel());
-                buttonIndex.button_ind_2 = 0;
-                Button_3.setText(book_array.get(four_index + 3).getEng());
-                buttonIndex.button_ind_3 = 3;
-                Button_4.setText(book_array.get(four_index + 1).getBel());
-                buttonIndex.button_ind_4 = 1;
-                Button_5.setText(book_array.get(four_index + 2).getEng());
-                buttonIndex.button_ind_5 = 2;
-                Button_6.setText(book_array.get(four_index + 2).getBel());
-                buttonIndex.button_ind_6 = 2;
-                Button_7.setText(book_array.get(four_index + 1).getEng());
-                buttonIndex.button_ind_7 = 1;
-                Button_8.setText(book_array.get(four_index + 3).getBel());
-                buttonIndex.button_ind_8 = 3;
-
-                break;
-
-            case 1:
-                Button_1.setText(book_array.get(four_index + 3).getEng());
-                buttonIndex.button_ind_1 = 3;
-                Button_2.setText(book_array.get(four_index + 2).getBel());
-                buttonIndex.button_ind_2 = 2;
-                Button_3.setText(book_array.get(four_index + 0).getEng());
-                buttonIndex.button_ind_3 = 0;
-                Button_4.setText(book_array.get(four_index + 0).getBel());
-                buttonIndex.button_ind_4 = 0;
-                Button_5.setText(book_array.get(four_index + 1).getEng());
-                buttonIndex.button_ind_5 = 1;
-                Button_6.setText(book_array.get(four_index + 1).getBel());
-                buttonIndex.button_ind_6 = 1;
-                Button_7.setText(book_array.get(four_index + 2).getEng());
-                buttonIndex.button_ind_7 = 2;
-                Button_8.setText(book_array.get(four_index + 3).getBel());
-                buttonIndex.button_ind_8 = 3;
-                break;
-
-            case 3:
-                Button_1.setText(book_array.get(four_index + 1).getEng());
-                buttonIndex.button_ind_1 = 1;
-                Button_2.setText(book_array.get(four_index + 1).getBel());
-                buttonIndex.button_ind_2 = 1;
-                Button_3.setText(book_array.get(four_index + 2).getEng());
-                buttonIndex.button_ind_3 = 2;
-                Button_4.setText(book_array.get(four_index + 0).getBel());
-                buttonIndex.button_ind_4 = 0;
-                Button_5.setText(book_array.get(four_index + 3).getEng());
-                buttonIndex.button_ind_5 = 3;
-                Button_6.setText(book_array.get(four_index + 3).getBel());
-                buttonIndex.button_ind_6 = 3;
-                Button_7.setText(book_array.get(four_index + 0).getEng());
-                buttonIndex.button_ind_7 = 0;
-                Button_8.setText(book_array.get(four_index + 2).getBel());
-                buttonIndex.button_ind_8 = 2;
-                break;
-
-            default:
-
-                Button_1.setText(book_array.get(four_index + 0).getEng());
-                buttonIndex.button_ind_1 = 0;
-                Button_2.setText(book_array.get(four_index + 3).getBel());
-                buttonIndex.button_ind_2 = 3;
-                Button_3.setText(book_array.get(four_index + 1).getEng());
-                buttonIndex.button_ind_3 = 1;
-                Button_4.setText(book_array.get(four_index + 1).getBel());
-                buttonIndex.button_ind_4 = 1;
-                Button_5.setText(book_array.get(four_index + 2).getEng());
-                buttonIndex.button_ind_5 = 2;
-                Button_6.setText(book_array.get(four_index + 2).getBel());
-                buttonIndex.button_ind_6 = 2;
-                Button_7.setText(book_array.get(four_index + 3).getEng());
-                buttonIndex.button_ind_7 = 3;
-                Button_8.setText(book_array.get(four_index + 0).getBel());
-                buttonIndex.button_ind_8 = 0;
-                break;
-
-
-        }
-        Button_1.setVisibility(View.VISIBLE);
-        Button_2.setVisibility(View.VISIBLE);
-        Button_3.setVisibility(View.VISIBLE);
-        Button_4.setVisibility(View.VISIBLE);
-        Button_5.setVisibility(View.VISIBLE);
-        Button_6.setVisibility(View.VISIBLE);
-        Button_7.setVisibility(View.VISIBLE);
-        Button_8.setVisibility(View.VISIBLE);
+//
+//    public static void makeRand(Button Button_1, Button Button_2, Button Button_3, Button Button_4,
+//                                Button Button_5, Button Button_6, Button Button_7, Button Button_8,
+//                                Random rand, ArrayList<Word> word_array, buttonIndex buttonIndex, int four_index) {
+//        switch (rand.nextInt(4)) {
+//            case 0:
+//                Button_1.setText(word_array.get(four_index + 0).getEng());
+//                buttonIndex.button_ind_1 = 0;
+//                Button_2.setText(word_array.get(four_index + 0).getBel());
+//                buttonIndex.button_ind_2 = 0;
+//                Button_3.setText(word_array.get(four_index + 3).getEng());
+//                buttonIndex.button_ind_3 = 3;
+//                Button_4.setText(word_array.get(four_index + 1).getBel());
+//                buttonIndex.button_ind_4 = 1;
+//                Button_5.setText(word_array.get(four_index + 2).getEng());
+//                buttonIndex.button_ind_5 = 2;
+//                Button_6.setText(word_array.get(four_index + 2).getBel());
+//                buttonIndex.button_ind_6 = 2;
+//                Button_7.setText(word_array.get(four_index + 1).getEng());
+//                buttonIndex.button_ind_7 = 1;
+//                Button_8.setText(word_array.get(four_index + 3).getBel());
+//                buttonIndex.button_ind_8 = 3;
+//
+//                break;
+//
+//            case 1:
+//                Button_1.setText(word_array.get(four_index + 3).getEng());
+//                buttonIndex.button_ind_1 = 3;
+//                Button_2.setText(word_array.get(four_index + 2).getBel());
+//                buttonIndex.button_ind_2 = 2;
+//                Button_3.setText(word_array.get(four_index + 0).getEng());
+//                buttonIndex.button_ind_3 = 0;
+//                Button_4.setText(word_array.get(four_index + 0).getBel());
+//                buttonIndex.button_ind_4 = 0;
+//                Button_5.setText(word_array.get(four_index + 1).getEng());
+//                buttonIndex.button_ind_5 = 1;
+//                Button_6.setText(word_array.get(four_index + 1).getBel());
+//                buttonIndex.button_ind_6 = 1;
+//                Button_7.setText(word_array.get(four_index + 2).getEng());
+//                buttonIndex.button_ind_7 = 2;
+//                Button_8.setText(word_array.get(four_index + 3).getBel());
+//                buttonIndex.button_ind_8 = 3;
+//                break;
+//
+//            case 3:
+//                Button_1.setText(word_array.get(four_index + 1).getEng());
+//                buttonIndex.button_ind_1 = 1;
+//                Button_2.setText(word_array.get(four_index + 1).getBel());
+//                buttonIndex.button_ind_2 = 1;
+//                Button_3.setText(word_array.get(four_index + 2).getEng());
+//                buttonIndex.button_ind_3 = 2;
+//                Button_4.setText(word_array.get(four_index + 0).getBel());
+//                buttonIndex.button_ind_4 = 0;
+//                Button_5.setText(word_array.get(four_index + 3).getEng());
+//                buttonIndex.button_ind_5 = 3;
+//                Button_6.setText(word_array.get(four_index + 3).getBel());
+//                buttonIndex.button_ind_6 = 3;
+//                Button_7.setText(word_array.get(four_index + 0).getEng());
+//                buttonIndex.button_ind_7 = 0;
+//                Button_8.setText(word_array.get(four_index + 2).getBel());
+//                buttonIndex.button_ind_8 = 2;
+//                break;
+//
+//            default:
+//
+//                Button_1.setText(word_array.get(four_index + 0).getEng());
+//                buttonIndex.button_ind_1 = 0;
+//                Button_2.setText(word_array.get(four_index + 3).getBel());
+//                buttonIndex.button_ind_2 = 3;
+//                Button_3.setText(word_array.get(four_index + 1).getEng());
+//                buttonIndex.button_ind_3 = 1;
+//                Button_4.setText(word_array.get(four_index + 1).getBel());
+//                buttonIndex.button_ind_4 = 1;
+//                Button_5.setText(word_array.get(four_index + 2).getEng());
+//                buttonIndex.button_ind_5 = 2;
+//                Button_6.setText(word_array.get(four_index + 2).getBel());
+//                buttonIndex.button_ind_6 = 2;
+//                Button_7.setText(word_array.get(four_index + 3).getEng());
+//                buttonIndex.button_ind_7 = 3;
+//                Button_8.setText(word_array.get(four_index + 0).getBel());
+//                buttonIndex.button_ind_8 = 0;
+//                break;
+//
+//
+//        }
+//        Button_1.setVisibility(View.VISIBLE);
+//        Button_2.setVisibility(View.VISIBLE);
+//        Button_3.setVisibility(View.VISIBLE);
+//        Button_4.setVisibility(View.VISIBLE);
+//        Button_5.setVisibility(View.VISIBLE);
+//        Button_6.setVisibility(View.VISIBLE);
+//        Button_7.setVisibility(View.VISIBLE);
+//        Button_8.setVisibility(View.VISIBLE);
     }
 
 }

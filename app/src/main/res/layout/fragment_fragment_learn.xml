@@ -20,7 +20,7 @@
         android:textSize="32sp" />
 
     <TextView
-        android:id="@+id/textViewBel"
+        android:id="@+id/textViewLangFirst"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="105sp"
@@ -31,19 +31,10 @@
         android:textColor="@color/colorWhite"
         android:textSize="36sp" />
 
-    <TextView
-        android:id="@+id/textViewBelLat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="105sp"
-        android:layout_marginTop="245sp"
-        android:fontFamily="@font/urw"
-        android:text="аб’яднаныя"
-        android:textColor="@color/colorWhite"
-        android:textSize="36sp" />
+
 
     <TextView
-        android:id="@+id/textViewEng"
+        android:id="@+id/textViewLangSecond"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="105sp"
@@ -54,7 +45,7 @@
         android:textSize="36sp" />
 
     <Button
-        android:id="@+id/buttonSend"
+        android:id="@+id/buttonShare"
         android:layout_width="45sp"
         android:layout_height="45sp"
         android:layout_marginLeft="20sp"
@@ -67,7 +58,7 @@
         android:typeface="monospace" />
 
     <Button
-        android:id="@+id/buttonNext"
+        android:id="@+id/buttonNextWord"
         android:layout_width="140sp"
         android:layout_height="140sp"
         android:layout_marginLeft="35sp"
@@ -79,7 +70,7 @@
         android:typeface="normal" />
 
     <Button
-        android:id="@+id/buttonShow"
+        android:id="@+id/buttonShowTranslation"
         android:layout_width="140sp"
         android:layout_height="140sp"
         android:layout_marginLeft="205sp"

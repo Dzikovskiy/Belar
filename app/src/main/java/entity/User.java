@@ -1,12 +1,17 @@
 package entity;
 
+import android.provider.UserDictionary;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     private String email;
     private String name;
     private String password;
-    private int acquainted;
-    private int tested;
-    private int learned;
+    private List<Word> acquaintedWords;
+    private List<Word> testedWords;
+    private List<Word> matchedWords;
 
     public User() {
     }
@@ -15,6 +20,9 @@ public class User {
         this.email = email;
         this.name = name;
         this.password = password;
+        this.acquaintedWords = new ArrayList<>();
+        this.testedWords = new ArrayList<>();
+        this.matchedWords = new ArrayList<>();
     }
 
     public String getEmail() {
@@ -41,27 +49,27 @@ public class User {
         this.password = password;
     }
 
-    public int getAcquainted() {
-        return acquainted;
+    public List<Word> getAcquaintedWords() {
+        return acquaintedWords;
     }
 
-    public void setAcquainted(int acquainted) {
-        this.acquainted = acquainted;
+    public void setAcquaintedWords(List<Word> acquaintedWords) {
+        this.acquaintedWords = acquaintedWords;
     }
 
-    public int getTested() {
-        return tested;
+    public List<Word> getTestedWords() {
+        return testedWords;
     }
 
-    public void setTested(int tested) {
-        this.tested = tested;
+    public void setTestedWords(List<Word> testedWords) {
+        this.testedWords = testedWords;
     }
 
-    public int getLearned() {
-        return learned;
+    public List<Word> getMatchedWords() {
+        return matchedWords;
     }
 
-    public void setLearned(int learned) {
-        this.learned = learned;
+    public void setMatchedWords(List<Word> matchedWords) {
+        this.matchedWords = matchedWords;
     }
 }

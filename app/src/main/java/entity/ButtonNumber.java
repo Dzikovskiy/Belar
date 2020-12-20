@@ -1,6 +1,6 @@
 package entity;
 
-public class ButtonNumber {
+public class  ButtonNumber {
     private String engText;
     private String belText;
     private int engButtonNumber;

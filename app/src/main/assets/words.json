@@ -1,0 +1,63 @@
+{
+  "words": [
+    {
+      "id": "1",
+      "langFirst": "пяць",
+      "langSecond": "five"
+    },
+    {
+      "id": "2",
+      "langFirst": "хлеб",
+      "langSecond": "bread"
+    },
+    {
+      "id": "3",
+      "langFirst": "вада",
+      "langSecond": "water"
+    }, {
+      "id": "4",
+      "langFirst": "замак",
+      "langSecond": "castle"
+    }, {
+      "id": "5",
+      "langFirst": "зямля",
+      "langSecond": "earth"
+    }, {
+      "id": "6",
+      "langFirst": "сонца",
+      "langSecond": "sun"
+    }, {
+      "id": "7",
+      "langFirst": "дзіця",
+      "langSecond": "kid"
+    }, {
+      "id": "8",
+      "langFirst": "кнiга",
+      "langSecond": "book"
+    }, {
+      "id": "9",
+      "langFirst": "тэлефон",
+      "langSecond": "phone"
+    }, {
+      "id": "10",
+      "langFirst": "будынак",
+      "langSecond": "building"
+    }, {
+      "id": "11",
+      "langFirst": "кот",
+      "langSecond": "cat"
+    }, {
+      "id": "12",
+      "langFirst": "сабака",
+      "langSecond": "dog"
+    }, {
+      "id": "13",
+      "langFirst": "дзесяць",
+      "langSecond": "ten"
+    }, {
+      "id": "14",
+      "langFirst": "дзевяць",
+      "langSecond": "nine"
+    }
+  ]
+}
